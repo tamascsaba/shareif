@@ -1,0 +1,41 @@
+<textarea
+  *ngIf="(uploadState | async) === UploadState.TEXTAREA; else dragAndDrop"
+  [formControl]="textControl"
+  required
+  placeholder="Paste or drag your data here."
+  aria-invalid="false"
+  aria-required="true"
+  spellcheck="false"
+></textarea>
+
+<ng-template #dragAndDrop>
+  <div
+    [ngClass]="{
+      'drag-active': (dragProgress | async) === DragProgress.OVER_BOX,
+      'invalid-file': (uploadState | async) === UploadState.ERROR
+    }"
+    [ngSwitch]="uploadState | async"
+    class="drag-and-drop"
+  >
+    <ng-container *ngSwitchCase="UploadState.DEFAULT">
+      <div>Drag and drop your data here</div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="UploadState.UPLOADING">
+      Loading...
+    </ng-container>
+
+    <ng-container *ngSwitchCase="UploadState.ERROR">
+      <label>This is not a valid data</label>
+    </ng-container>
+  </div>
+</ng-template>
+
+
+<div *ngIf="textControl.value" class="upload-options">
+  <input class="upload-password" type="text" placeholder="Type your password if you want">
+  <button class="upload-button" type="button" (click)="uploadText()">
+    {{(uploadState | async) === UploadState.UPLOADING ? 'Uploading...' : 'Upload'}}
+  </button>
+
+</div>

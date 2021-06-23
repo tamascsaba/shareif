@@ -3365,6 +3365,11 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
+flat-ui-colors-sass@^1.0.0:
+  version "1.0.0"
+  resolved "https://npm.balabit/flat-ui-colors-sass/-/flat-ui-colors-sass-1.0.0.tgz#edd87cb493a9b4368117a0ba9507f2293699b1d9"
+  integrity sha1-7dh8tJOptDaBF6C6lQfyKTaZsdk=
+
 flatted@^2.0.1:
   version "2.0.2"
   resolved "https://npm.balabit/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"

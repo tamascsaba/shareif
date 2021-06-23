@@ -1,0 +1,59 @@
+@import "~flat-ui-colors-sass";
+
+
+.upload-options {
+  margin-top: 20px;
+}
+
+.upload-password {
+  margin-right: 20px;
+  padding: 10px;
+  width: 400px;
+  border: 1px solid $flat-pumpkin;
+}
+
+.upload-button {
+  padding: 10px 20px;
+  text-align: center;
+  background: $flat-blue-2;
+  color: $flat-gray-1;
+  box-shadow: none;
+  border: 1px solid $flat-blue-3;
+
+  &:hover {
+    background: $flat-blue-1;
+  }
+}
+
+.drag-and-drop {
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: $flat-clouds;
+  border: 1px solid $flat-pumpkin;
+  border-radius: 10px;
+  outline: 2px dashed $flat-gray-4;
+  outline-offset: -10px;
+
+  transition-duration: 200ms;
+  transition-property: outline-color, outline-offset, background-color;
+  transition-timing-function: ease-in-out;
+
+  &.invalid-file {
+    background-color: rgba($flat-red-1, 0.5);
+    outline-color: $flat-red-1;
+
+  }
+
+  &.drag-active {
+    background-color: $flat-gray-1;
+    outline-offset: -20px;
+  }
+}
+
+.upload-password, .upload-button {
+  border-radius: 10px;
+  outline: none;
+}

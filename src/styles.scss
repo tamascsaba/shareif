@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~flat-ui-colors-sass";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Courier New', sans-serif;
+  color: whitesmoke;
+  background: $flat-pumpkin;
+  background: linear-gradient(90deg, $flat-orange 0%, $flat-carrot 35%, $flat-pumpkin 100%);
+}
+
+textarea {
+  width: 100%;
+  height: 260px;
+  border: 1px solid $flat-pumpkin;
+  resize: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+}
