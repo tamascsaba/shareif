@@ -3,13 +3,16 @@
 
 .upload-options {
   margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.upload-password {
+.upload-url {
   margin-right: 20px;
   padding: 10px;
-  width: 400px;
   border: 1px solid $flat-pumpkin;
+  width: 100%;
 }
 
 .upload-button {
@@ -26,7 +29,7 @@
 }
 
 .drag-and-drop {
-  height: 260px;
+  height: 265px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +56,7 @@
   }
 }
 
-.upload-password, .upload-button {
+.upload-url, .upload-button {
   border-radius: 10px;
   outline: none;
 }

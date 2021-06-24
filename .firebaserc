@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "shareif-app": {
+      "hosting": {
+        "shareif": [
+          "shareif-app"
+        ]
+      }
+    }
+  }
+}

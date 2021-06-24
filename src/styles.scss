@@ -20,4 +20,8 @@ textarea {
   outline: none;
   padding: 10px;
   border-radius: 10px;
+
+  &:read-only {
+    opacity: 0.5;
+  }
 }

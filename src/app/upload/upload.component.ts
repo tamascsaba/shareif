@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
+import { CryptoService } from '../services/crypto.service';
+import { FireStoreService } from '../services/fire-store.service';
 
 const MAX_FILE_SIZE = 2097152; // 2 MiB
+const ERROR_TIMEOUT = 3000; // 3sec
 
 export enum DragProgress {
   LEAVE_PAGE,
@@ -26,17 +29,23 @@ enum UploadState {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UploadComponent implements OnInit {
-  DragProgress = DragProgress;
-  UploadState = UploadState;
+  public DragProgress = DragProgress;
+  public UploadState = UploadState;
   public textControl = new FormControl('', Validators.required);
   public dragProgress = new BehaviorSubject<DragProgress>(DragProgress.LEAVE_PAGE);
   public uploadState = new BehaviorSubject<UploadState>(UploadState.TEXTAREA);
+  public errorMessage = new ReplaySubject(1);
+  public url = new Subject();
 
   private destroy = new Subject<boolean>();
 
-  constructor() {}
+  constructor(private readonly cryptoService: CryptoService, private readonly fireStoreService: FireStoreService) {}
 
   public ngOnInit(): void {
+    this.fireStoreService
+      .login()
+      .catch(() => this.setError('Authentication error'));
+
     this.textControl.valueChanges
       .pipe(
         takeUntil(this.destroy),
@@ -77,16 +86,19 @@ export class UploadComponent implements OnInit {
 
   public uploadText() {
     this.uploadState.next(UploadState.UPLOADING);
-    console.log(this.textControl.value);
-  }
-
-  private setDefault() {
-    this.textControl.reset();
+    const data = this.cryptoService.encrypt(this.textControl.value);
+    this.fireStoreService.upload(data)
+      .catch(() => this.setError('Upload error'))
+      .then((url: string | null) => {
+        if (!url) return;
+        this.url.next(url);
+        this.uploadState.next(UploadState.TEXTAREA);
+      });
   }
 
   private isValid(size: number): boolean {
     if (size > MAX_FILE_SIZE) {
-      this.setError();
+      this.setError('Text is too large');
       return false;
     }
     return true
@@ -107,12 +119,18 @@ export class UploadComponent implements OnInit {
     fileReader.readAsText(file);
   }
 
-  private setError() {
+  private setError(message?: string) {
     this.uploadState.next(UploadState.ERROR);
+    this.errorMessage.next(message);
+
     this.setDefault();
-    setTimeout(() => {
-      this.uploadState.next(UploadState.TEXTAREA);
-    }, 2000);
+    setTimeout(() => this.uploadState.next(UploadState.TEXTAREA), ERROR_TIMEOUT);
+
+    return null;
+  }
+
+  private setDefault() {
+    this.textControl.reset();
   }
 
   private static stopEvent(event: any) {

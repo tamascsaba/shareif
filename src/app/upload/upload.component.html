@@ -2,8 +2,7 @@
   *ngIf="(uploadState | async) === UploadState.TEXTAREA; else dragAndDrop"
   [formControl]="textControl"
   required
-  placeholder="Paste or drag your data here."
-  aria-invalid="false"
+  placeholder="Paste or drag your texts here."
   aria-required="true"
   spellcheck="false"
 ></textarea>
@@ -18,7 +17,7 @@
     class="drag-and-drop"
   >
     <ng-container *ngSwitchCase="UploadState.DEFAULT">
-      <div>Drag and drop your data here</div>
+      <div>Drag and drop your texts here</div>
     </ng-container>
 
     <ng-container *ngSwitchCase="UploadState.UPLOADING">
@@ -26,16 +25,13 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="UploadState.ERROR">
-      <label>This is not a valid data</label>
+      {{errorMessage | async}}
     </ng-container>
   </div>
 </ng-template>
 
 
 <div *ngIf="textControl.value" class="upload-options">
-  <input class="upload-password" type="text" placeholder="Type your password if you want">
-  <button class="upload-button" type="button" (click)="uploadText()">
-    {{(uploadState | async) === UploadState.UPLOADING ? 'Uploading...' : 'Upload'}}
-  </button>
-
+  <input *ngIf="url | async as _url" value="{{_url}}" class="upload-url" type="text" readonly>
+  <button class="upload-button" type="button" (click)="uploadText()">Upload</button>
 </div>
