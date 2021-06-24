@@ -35,3 +35,7 @@
   <input *ngIf="url | async as _url" value="{{_url}}" class="upload-url" type="text" readonly>
   <button class="upload-button" type="button" (click)="uploadText()">Upload</button>
 </div>
+<div class="upload-qr-code-container">
+  <qr-code *ngIf="url | async as _url" class="upload-qr-code" value="{{_url}}"  size="300" errorCorrectionLevel="M"></qr-code>
+</div>
+

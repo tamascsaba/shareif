@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { random, cipher, util} from 'node-forge';
 import { EncryptedItem } from './fire-store.service';
-import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator';
+import { adjectives, animals, colors, NumberDictionary, uniqueNamesGenerator, } from 'unique-names-generator';
 
 const key = random.getBytesSync(32);
 const iv = random.getBytesSync(32);
 
 export const keyHex = util.bytesToHex(key);
-export const ivHex = util.bytesToHex(iv);
-export const uniqueName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
+export const uniqueName = uniqueNamesGenerator({ dictionaries: [
+  adjectives, colors, animals, NumberDictionary.generate({ min: 0, max: 99999 })
+]});
 
 @Injectable({
   providedIn: 'root'
