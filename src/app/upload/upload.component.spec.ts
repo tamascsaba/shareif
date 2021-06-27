@@ -1,25 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { UploadComponent } from './upload.component';
+import { AppModule } from '../app.module';
+import { DownloadComponent } from '../download/download.component';
 
 describe('UploadComponent', () => {
-  let component: UploadComponent;
-  let fixture: ComponentFixture<UploadComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ UploadComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UploadComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => MockBuilder(UploadComponent, AppModule));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(DownloadComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
 });

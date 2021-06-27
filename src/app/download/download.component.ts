@@ -22,6 +22,7 @@ export class DownloadComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
     const key = this.route.snapshot.params.key;
+
     this.text = this.fireStoreService
       .download(id)
       .pipe(map((encryptedItem: EncryptedItem | undefined) => {
