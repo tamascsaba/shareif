@@ -1,0 +1,32 @@
+
+<textarea
+  *ngIf="(uploadState | async) === UploadState.TEXTAREA; else dragAndDrop"
+  [formControl]="textControl"
+  required
+  placeholder="Paste or drag your texts here."
+  aria-required="true"
+  spellcheck="false"
+></textarea>
+
+<ng-template #dragAndDrop>
+  <div
+    [ngClass]="{
+      'drag-active': (dragProgress | async) === DragProgress.OVER_BOX,
+      'invalid-file': (uploadState | async) === UploadState.ERROR
+    }"
+    [ngSwitch]="uploadState | async"
+    class="drag-and-drop"
+  >
+    <ng-container *ngSwitchCase="UploadState.DEFAULT">
+      <div>Drag and drop your texts here</div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="UploadState.UPLOADING">
+      Loading...
+    </ng-container>
+
+    <ng-container *ngSwitchCase="UploadState.ERROR">
+      {{errorMessage | async}}
+    </ng-container>
+  </div>
+</ng-template>

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFireModule } from '@angular/fire';
+import { QrCodeModule } from 'ng-qrcode';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,13 +12,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DownloadComponent } from './download/download.component';
 
 import { environment } from '../environments/environment';
-import { QrCodeModule } from 'ng-qrcode';
+
+import { TextareaComponent } from './upload/textarea/textarea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
-    DownloadComponent
+    DownloadComponent,
+    TextareaComponent
   ],
   imports: [
     BrowserModule,

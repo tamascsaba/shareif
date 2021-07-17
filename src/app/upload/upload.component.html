@@ -1,39 +1,9 @@
-<textarea
-  *ngIf="(uploadState | async) === UploadState.TEXTAREA; else dragAndDrop"
-  [formControl]="textControl"
-  required
-  placeholder="Paste or drag your texts here."
-  aria-required="true"
-  spellcheck="false"
-></textarea>
 
-<ng-template #dragAndDrop>
-  <div
-    [ngClass]="{
-      'drag-active': (dragProgress | async) === DragProgress.OVER_BOX,
-      'invalid-file': (uploadState | async) === UploadState.ERROR
-    }"
-    [ngSwitch]="uploadState | async"
-    class="drag-and-drop"
-  >
-    <ng-container *ngSwitchCase="UploadState.DEFAULT">
-      <div>Drag and drop your texts here</div>
-    </ng-container>
+<app-textarea (textChange)="change($event)"></app-textarea>
 
-    <ng-container *ngSwitchCase="UploadState.UPLOADING">
-      Loading...
-    </ng-container>
-
-    <ng-container *ngSwitchCase="UploadState.ERROR">
-      {{errorMessage | async}}
-    </ng-container>
-  </div>
-</ng-template>
-
-
-<div *ngIf="textControl.value" class="upload-options">
+<div *ngIf="text" class="upload-options">
   <input *ngIf="url | async as _url" value="{{_url}}" class="upload-url" type="text" readonly>
-  <button class="upload-button" type="button" (click)="uploadText()">Upload</button>
+  <button class="upload-button" type="button" (click)="upload(text)">Upload</button>
 </div>
 <div class="upload-qr-code-container">
   <qr-code *ngIf="url | async as _url" class="upload-qr-code" value="{{_url}}"  size="300" errorCorrectionLevel="M"></qr-code>

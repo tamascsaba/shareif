@@ -1,0 +1,29 @@
+@import "~flat-ui-colors-sass";
+
+.drag-and-drop {
+  height: 265px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: $flat-clouds;
+  border: 1px solid $flat-pumpkin;
+  border-radius: 10px;
+  outline: 2px dashed $flat-gray-4;
+  outline-offset: -10px;
+
+  transition-duration: 200ms;
+  transition-property: outline-color, outline-offset, background-color;
+  transition-timing-function: ease-in-out;
+
+  &.invalid-file {
+    background-color: rgba($flat-red-1, 0.5);
+    outline-color: $flat-red-1;
+
+  }
+
+  &.drag-active {
+    background-color: $flat-gray-1;
+    outline-offset: -20px;
+  }
+}

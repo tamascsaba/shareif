@@ -1,6 +1,6 @@
 {
   "name": "shareif",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +32,6 @@
     "ng-qrcode": "^5.0.0",
     "node-forge": "^0.10.0",
     "rxjs": "~6.6.0",
-    "tldrlegal": "^1.0.11",
     "tslib": "^2.1.0",
     "unique-names-generator": "^4.5.0",
     "zone.js": "~0.11.4"
@@ -64,6 +63,7 @@
     "prettier": "^2.3.1",
     "pretty-quick": "^3.1.1",
     "snyk": "^1.644.0",
+    "tldrlegal": "^1.0.11",
     "typescript": "~4.2.3"
   }
 }
