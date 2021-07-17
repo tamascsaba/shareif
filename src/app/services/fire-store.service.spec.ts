@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { MockBuilder } from 'ng-mocks';
 
 import { FireStoreService } from './fire-store.service';
-import { MockBuilder } from 'ng-mocks';
+
 import { AppModule } from '../app.module';
 
 describe('FirebaseService', () => {

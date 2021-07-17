@@ -1,5 +1,7 @@
 import { MockBuilder, MockRender } from 'ng-mocks';
+
 import { UploadComponent } from './upload.component';
+
 import { AppModule } from '../app.module';
 import { DownloadComponent } from '../download/download.component';
 

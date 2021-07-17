@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { keyHex, uniqueName } from './crypto.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import { keyHex, uniqueName } from './crypto.service';
 export interface EncryptedItem {
   data: string;
   tag: string;

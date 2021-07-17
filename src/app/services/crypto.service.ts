@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { random, cipher, util} from 'node-forge';
-import { EncryptedItem } from './fire-store.service';
 import { adjectives, animals, colors, NumberDictionary, uniqueNamesGenerator, } from 'unique-names-generator';
+
+import { EncryptedItem } from './fire-store.service';
 
 const key = random.getBytesSync(32);
 export const iv = random.getBytesSync(32);

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Subject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { UploadService } from './upload.service'
-import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-upload',

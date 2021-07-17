@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CryptoService } from '../services/crypto.service';
-import { EncryptedItem, FireStoreService } from '../services/fire-store.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { CryptoService } from '../services/crypto.service';
+import { EncryptedItem, FireStoreService } from '../services/fire-store.service';
 
 @Component({
   selector: 'app-download',

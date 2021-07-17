@@ -1,24 +1,46 @@
-import { DownloadComponent } from './download.component';
-import { MockBuilder, MockRender } from 'ng-mocks';
-import { AppModule } from '../app.module';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { FireStoreService } from '../services/fire-store.service';
 import { EMPTY } from 'rxjs';
 
+import { DownloadComponent } from './download.component';
+
+import { AppModule } from '../app.module';
+import { FireStoreService } from '../services/fire-store.service';
+import { TextareaComponent } from '../upload/textarea/textarea.component';
+
 describe('DownloadComponent', () => {
+  let component: TextareaComponent;
+  let fixture: ComponentFixture<TextareaComponent>;
+
   const activatedRouteMock: any = {
     snapshot: {
       params: {id: 'foo', key: 'bar'}
     }
   }
 
-  beforeEach(() => MockBuilder(DownloadComponent, AppModule)
-    .mock(ActivatedRoute, activatedRouteMock)
-    .mock(FireStoreService, {download: () => EMPTY})
-  );
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [AppModule],
+      declarations: [DownloadComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: activatedRouteMock
+        },
+        {
+          provide: FireStoreService,
+          useValue: {download: () => EMPTY}
+        },
+      ]
+    });
+
+    fixture = TestBed.createComponent(TextareaComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  })
+
 
   it('should create', () => {
-    const fixture = MockRender(DownloadComponent);
     expect(fixture).toBeDefined();
   });
 });

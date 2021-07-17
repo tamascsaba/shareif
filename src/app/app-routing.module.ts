@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { DownloadComponent } from './download/download.component';
 import { UploadComponent } from './upload/upload.component';
 

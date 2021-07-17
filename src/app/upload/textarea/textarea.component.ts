@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { FormControl, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 import { DragProgress, UploadService, UploadState } from '../upload.service'
 
