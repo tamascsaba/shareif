@@ -21,7 +21,6 @@ describe('DownloadComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [DownloadComponent],
       providers: [
         {
           provide: ActivatedRoute,

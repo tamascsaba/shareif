@@ -12,7 +12,6 @@ describe('UploadComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [ DownloadComponent ]
     })
       .compileComponents();
   });

@@ -15,7 +15,6 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule.withRoutes(routes)],
-      declarations: [AppComponent],
     });
 
     router = TestBed.inject(Router);
