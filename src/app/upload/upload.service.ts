@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, ReplaySubject, Subject, Subscriber } from 'rxjs';
+import { BehaviorSubject, from, Observable, ReplaySubject, Subscriber } from 'rxjs';
 
 import { CryptoService } from '../services/crypto.service';
 import { FireStoreService } from '../services/fire-store.service';
@@ -25,10 +25,8 @@ export enum UploadState {
   providedIn: 'root'
 })
 export class UploadService {
-  public dragProgress = new BehaviorSubject<DragProgress>(DragProgress.LEAVE_PAGE);
   public uploadState = new BehaviorSubject<UploadState>(UploadState.TEXTAREA);
   public errorMessage = new ReplaySubject(1);
-  public url = new Subject();
 
   constructor(private readonly cryptoService: CryptoService, private readonly fireStoreService: FireStoreService) { }
 
