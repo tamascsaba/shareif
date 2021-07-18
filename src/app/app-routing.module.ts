@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DownloadComponent } from './download/download.component';
 import { UploadComponent } from './upload/upload.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {path : '', component : UploadComponent},
   {path: ':id/:key', component: DownloadComponent },
 ];
