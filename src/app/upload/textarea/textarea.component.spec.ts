@@ -4,7 +4,7 @@ import { TextareaComponent } from './textarea.component';
 
 import { AppModule } from '../../app.module';
 
-describe('DragAndDropTextareaComponent', () => {
+describe('TextareaComponent', () => {
   let component: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
 
