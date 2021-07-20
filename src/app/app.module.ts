@@ -12,7 +12,6 @@ import { TextareaComponent } from './upload/textarea/textarea.component';
 import { UploadComponent } from './upload/upload.component';
 
 import { environment } from '../environments/environment';
-
 @NgModule({
   declarations: [
     AppComponent,
